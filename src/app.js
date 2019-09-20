@@ -115,9 +115,9 @@ app.post("/bookmarks", (req, res) => {
     .json(bookmark);
 });
 
-app.delete("./bookmarks/:bmid", (req, res) => {
-  const { bmid } = req.params;
-  const index = bookmarks.findIndex(b => b.id == bmid);
+app.delete("./bookmarks/:id", (req, res) => {
+  const { id } = req.params;
+  const index = bookmarks.findIndex(b => b.id == id);
 
   if (index === -1) {
     return res.status(404).send("Bookmark not found");
@@ -125,7 +125,7 @@ app.delete("./bookmarks/:bmid", (req, res) => {
 
   bookmarks.splice(index, 1);
 
-  logger.info(`Bookmark with id ${bmid} deleted`);
+  logger.info(`Bookmark with id ${id} deleted`);
   res
     .status(204)
     .json(bookmarks)
